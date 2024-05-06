@@ -1,0 +1,40 @@
+<h2>Article Id: <%= @article.id %> </h2>
+
+<p>Title: <%= @article.title %></p> 
+
+<p>Text: <%= @article.text %></p>
+
+
+<ul>
+  <li><%= link_to "Edit", edit_article_path(@article) %></li>
+  <li><%= link_to "Destroy", article_path(@article), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>
+
+<%= form_for([@article, @article.comments.build]) do |f| %>
+    <p>
+    <%= f.label :author %><br />
+    <%= f.text_field :author %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>  
+  <p>
+    <%= f.submit 'Create comments' %>
+  </p>
+
+<% end %>
+
+
+<%  @article.comments.each do |comment| %>
+
+        <p><i><%= comment.author %> say:</i><br />  
+        <%= comment.body %></p>
+        
+        <p><%= comment.id %></p>
+        <hr />
+            
+<% end %>
