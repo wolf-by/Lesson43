@@ -14,9 +14,10 @@
 </ul>
 
 <%= form_for([@article, @article.comments.build]) do |f| %>
-    <p>
-    <%= f.label :author %><br />
-    <%= f.text_field :author %>
+  <p>
+    
+  <%= f.hidden_field :author, value: current_user.username %>
+
   </p>
   <p>
     <%= f.label :body %><br />
@@ -30,11 +31,13 @@
 
 
 <%  @article.comments.each do |comment| %>
-
+        
         <p><i><%= comment.author %> say:</i><br />  
         <%= comment.body %></p>
         
         <p><%= comment.id %></p>
         <hr />
-            
+        
+        
+
 <% end %>

@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @article.comments.create(comment_params)
 
+
     redirect_to @article
   end
 
@@ -13,5 +14,7 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:author, :body)
+
   end
+
 end
